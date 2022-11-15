@@ -1,0 +1,135 @@
+        body {
+            background-color: aqua;
+        }
+
+        .jm_profile {
+            max-width: 280px;
+            width: 95%;
+            height: 500px;
+            border: 1px solid black;
+        }
+
+        .jm_img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .jm_menu {
+            position: fixed;
+            border: 0;
+            background-color: beige;
+            display: block;
+            max-width: 300px;
+            width: 95%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .jm_index {
+            margin: -50px auto 0px auto;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /*ABOUT*/
+        .jm_about {
+            padding-left: 300px;
+        }
+        .jm_name {
+            padding-top: 150px;
+            font-size: 100px;
+            font-weight: 900;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .jm_card {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            margin: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 300px;
+            width: 95%;
+            height: 250px;
+            border-radius: 10%;
+        }
+        .card-header {
+            font-size: 30px;
+        }
+        .card-title {
+            font-size: 17px;
+        }
+        .hyper {
+            text-decoration-line: none;
+            font-size: 17px;
+        }
+        a:link {
+            color: pink;
+        }
+        a:visited {
+            color: gray;
+        }
+        a:hover {
+            color: beige;
+        }
+        a:active {
+            color: green;
+        }
+
+
+        /*guest-book*/
+        .jm_guest-book {
+            padding-left: 300px;
+        }
+
+        .mypost {
+            width: 95%;
+            max-width: 500px;
+            margin: 20px auto 20px auto;
+
+            box-shadow: 0px 0px 3px 0px black;
+            padding: 20px;
+            background-color: beige;
+        }
+
+        .mypost > button {
+            margin-top: 15px;
+            margin-left: auto;
+        }
+
+        .mycards {
+            width: 95%;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .mycards > .card {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .guest-book-card {
+            width: 95%;
+            max-width: 500px;
+            margin: 20px auto 20px auto;
+
+            box-shadow: 0px 0px 3px 0px black;
+            padding: 20px;
+            background-color: beige;
+        }
+
+        .jm_btn {
+            margin: auto 2px 4px 2px;
+            float: right;
+        }
