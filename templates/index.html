@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <title>자기 소개 페이지</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Hi Melody', cursive;
+        }
+
+        .header {
+            margin: 10px;
+        }
+
+        body {
+            background-color: white;
+        }
+
+        .main {
+
+            margin: 100px;
+
+            background-image: url("https://ca.slack-edge.com/T043597JK8V-U046WBSS33K-fb36b387bc13-512");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-color: white;
+
+            padding-top: 28.125%;
+        }
+
+        .profile {
+            padding: 7%;
+        }
+
+        .main-header {
+            padding-bottom: 7%;
+        }
+
+        .main-section {
+            padding-bottom: 7%;
+            text-align: center;
+        }
+
+        .name {
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .post {
+            width: 95%;
+            max-width: 500px;
+            margin: 50px auto 20px auto;
+
+            box-shadow: 0px 0px 3px 0px black;
+            padding: 20px;
+        }
+
+        .mypost > button {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+    </style>
+    <script>
+		$(document).ready(function(){
+            show_comment()
+        });
+        function save_comment() {
+            let name = $('#name').val()
+            let comment = $('#comment').val()
+
+            $.ajax({
+                type: "POST",
+                url: "/team",
+                data: {'name_give':name, 'comment_give':comment},
+                success: function (response) {
+                    alert(response["msg"])
+                    window.location.reload()
+                }
+            });
+        }
+        function show_comment() {
+            $('#comment-list').empty()
+            $.ajax({
+                type: "GET",
+                url: "/team",
+                data: {},
+                success: function (response) {
+                    let rows = response['comments']
+                    for (let i = 0; i < rows.length; i++) {
+                        let name = rows[i]['name']
+                        let comment = rows[i]['comment']
+
+                        let temp_html = `<div class="card">
+                                            <div class="card-body">
+                                                <blockquote class="blockquote mb-0">
+                                                    <p>${comment}</p>
+                                                    <footer class="blockquote-footer">${name}</footer>
+                                                </blockquote>
+                                            </div>
+                                        </div>`
+                        $('#comment-list').append(temp_html)
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="main"></div>
+<!--최상단 여백용-->
+<div class="profile">
+    <div class="main-header">
+        <div class="name">
+            안녕하세요 내배캠 4기 전규렬입니다
+        </div>
+    </div>
+    <div class="main-section">
+    </div>
+    <div class="main-section">
+        <div class="alert alert-light" role="alert">
+            개발일지 <a href="https://computer-love.tistory.com/" class="alert-link">구경가기</a>. 블로그에 내용은 거의 없습니다..
+        </div>
+    </div>
+    <!--    부트 스트랩 코드 시작-->
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    저의 MBTI는 ESTP 입니다.
+                </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                 data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body"><strong><br>인생은 과감한 모험이 아니라면 아무것도 아닌 것이다. (HELEN KELLER)
+                    <br></strong>
+                    <br>사업가(ESTP)는 항상 주변 사람에게 영향력을 행사하곤 합니다. 파티에서 가는 곳마다 사람들에게 둘러싸여 있는 사람을 발견한다면 아마 사업가일 것입니다. 이들은 직설적인
+                    유머
+                    감각을 지니고 있으며 수많은 사람의 관심을 받는 일을 즐깁니다. 한 마디로 사회자가 무대로 올라올 사람을 찾을 때 직접 무대로 올라가는 성격이라고 할 수 있습니다.
+                    사업가는 이론적이고 추상적인 개념과 지루한 토론에는 관심이 없습니다. 지능이 높고 활기찬 대화를 유지할 수 있는 성격이기는 하지만 현실적인 주제에 대해 이야기하고 직접 행동하는
+                    성격이기 때문입니다. 이들은 계획을 심사숙고하기보다는 먼저 행동하고 시행착오를 겪으며 실수를 바로잡기를 원합니다.
+                    </br></div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    저의 장점은 열정입니다.
+                </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+                 data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body"><br><strong>흥미를 가진 일에 대해서 쉽게 몰입하고 깊게 파고듭니다.
+                </strong></br>
+                    <br>관심을 가진 일에 대해서 넓고 깊에 파고드는 편입니니다, 한번 흥미를 가진 일에 대해서 쉽게 열정이 식지 않습니다.
+                    </br></div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    협업 과정에서의 스타일
+                </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
+                 data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body"><br><strong>저의 의견을 강력히 주장하기 보단 종합된 의견을 따르는 편입니다
+                </strong></br>
+                    <br>
+                    시킨대로 늘 "잘" 할순 없지만 시킨대로 하는편입니다.(최선을 다하고있는 중이지만 따라가지 못할 때가 있습니다...)
+                    </br></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post">
+        <div class="mypost">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="name" placeholder="url">
+                <label>닉네임</label>
+            </div>
+            <div class="form-floating">
+<textarea class="form-control" placeholder="Leave a comment here" id="comment"
+          style="height: 100px"></textarea>
+                <label>응원댓글</label>
+            </div>
+            <button onclick="save_comment()" type="button" class="btn btn-dark">응원 남기기</button>
+        </div>
+        <div class="mycards" id="comment-list">
+            <div class="card">
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>새로운 앨범 너무 멋져요!</p>
+                        <footer class="blockquote-footer">호빵맨</footer>
+                        <div>
+                            <button onclick="delete_comment()" type="button" id="del"></button>
+                        </div>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
