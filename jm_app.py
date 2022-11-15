@@ -44,5 +44,20 @@ def delete_comment():
     db.jungmin.update_one({'num':int(num_receive)},{'$set':{'done':1}})
     return jsonify({'msg': '댓글 삭제 완료'})
 
+
+# 댓글 수정 기능
+@app.route("/jungmin/update", methods=["POST"])
+def member_update():
+    num_receive = request.form['num_give']
+    name_receive = request.form['name_give']
+    comment_receive = request.form['comment_give']
+    db.jungmin.update_one({'num': int(num_receive)}, {'$set': {'name': name_receive}})
+    db.jungmin.update_one({'num': int(num_receive)}, {'$set': {'comment': comment_receive}})
+    return jsonify({'msg': '수정 완료!'})
+
 if __name__ == '__main__':
-   app.run('0.0.0.0', port=5000, debug=True)
+    app.run('0.0.0.0', port=5000, debug=True)
+
+
+
+

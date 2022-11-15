@@ -14,7 +14,10 @@ function save_comment() {
         $.ajax({
             type: 'POST',
             url: '/jungmin',
-            data: {name_give: name, comment_give: comment},
+            data: {
+                name_give: name,
+                comment_give: comment
+            },
             success: function (response) {
                 alert(response['msg'])
                 window.location.reload()
@@ -45,7 +48,7 @@ function show_comment() {
                                                     <p>${comment}</p>
                                                     <footer class="blockquote-footer">${name}</footer>
                                                     <button type="button" onclick="delete_comment(${num})" class="jm_btn btn-secondary btn-sm">삭제</button>
-                                                    <button type="button" class="jm_btn btn-secondary btn-sm">수정</button>
+                                                    <button type="button" onclick="update_comment(${num})" class="jm_btn btn-secondary btn-sm">수정</button>
                                                 </blockquote>
                                             </div>
                                         </div>`
@@ -61,9 +64,43 @@ function show_comment() {
 /*댓글 삭제 기능*/
 function delete_comment(num) {
     $.ajax({
-        type: "POST", url: "/jungmin/done", data: {num_give: num}, success: function (response) {
+        type: "POST",
+        url: "/jungmin/done",
+        data: {
+            num_give: num
+        },
+        success: function (response) {
+             if (confirm("정말 삭제하시겠습니까??") === true){
+                 alert(response["msg"])
+                 window.location.reload()
+
+     document.delete_comment.submit();
+
+ }else{   //취소
+
+     return false;
+
+ }
+        }
+    });
+}
+
+/*댓글 수정 기능*/
+function update_comment(num) {
+    let comment = $('#comment').val()
+    let name = $('#name').val()
+
+    $.ajax({
+        type: "POST",
+        url: "/jungmin/update",
+        data: {
+            num_give: num,
+            name_give: name,
+            comment_give: comment
+        },
+        success: function (response) {
             alert(response["msg"])
             window.location.reload()
         }
-    });
+    })
 }
