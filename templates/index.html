@@ -14,116 +14,14 @@
 
     <title>자기 소개 페이지</title>
     <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
-    <style>
-        * {
-            font-family: 'Hi Melody', cursive;
-        }
-
-        .header {
-            margin: 10px;
-        }
-
-        body {
-            background-color: white;
-        }
-
-        .main {
-
-            margin: 100px;
-
-            background-image: url("https://ca.slack-edge.com/T043597JK8V-U046WBSS33K-fb36b387bc13-512");
-
-            background-size: cover;
-
-            background-position: center;
-
-            background-color: white;
-
-            padding-top: 28.125%;
-        }
-
-        .profile {
-            padding: 7%;
-        }
-
-        .main-header {
-            padding-bottom: 7%;
-        }
-
-        .main-section {
-            padding-bottom: 7%;
-            text-align: center;
-        }
-
-        .name {
-            font-size: 30px;
-            text-align: center;
-        }
-
-        .post {
-            width: 95%;
-            max-width: 500px;
-            margin: 50px auto 20px auto;
-
-            box-shadow: 0px 0px 3px 0px black;
-            padding: 20px;
-        }
-
-        .mypost > button {
-            margin-top: 15px;
-            margin-bottom: 15px;
-        }
-    </style>
-    <script>
-		$(document).ready(function(){
-            show_comment()
-        });
-        function save_comment() {
-            let name = $('#name').val()
-            let comment = $('#comment').val()
-
-            $.ajax({
-                type: "POST",
-                url: "/team",
-                data: {'name_give':name, 'comment_give':comment},
-                success: function (response) {
-                    alert(response["msg"])
-                    window.location.reload()
-                }
-            });
-        }
-        function show_comment() {
-            $('#comment-list').empty()
-            $.ajax({
-                type: "GET",
-                url: "/team",
-                data: {},
-                success: function (response) {
-                    let rows = response['comments']
-                    for (let i = 0; i < rows.length; i++) {
-                        let name = rows[i]['name']
-                        let comment = rows[i]['comment']
-
-                        let temp_html = `<div class="card">
-                                            <div class="card-body">
-                                                <blockquote class="blockquote mb-0">
-                                                    <p>${comment}</p>
-                                                    <footer class="blockquote-footer">${name}</footer>
-                                                </blockquote>
-                                            </div>
-                                        </div>`
-                        $('#comment-list').append(temp_html)
-                    }
-                }
-            });
-        }
-    </script>
+    <link href="../static/style.css" rel="stylesheet">
+    <script src="../static/js.js"></script>
 </head>
 <body>
 <div class="main"></div>
-<!--최상단 여백용-->
 <div class="profile">
     <div class="main-header">
+        <!--        본문내용-->
         <div class="name">
             안녕하세요 내배캠 4기 전규렬입니다
         </div>
@@ -132,10 +30,12 @@
     </div>
     <div class="main-section">
         <div class="alert alert-light" role="alert">
+            <!--            블로그 링크-->
             개발일지 <a href="https://computer-love.tistory.com/" class="alert-link">구경가기</a>. 블로그에 내용은 거의 없습니다..
         </div>
     </div>
-    <!--    부트 스트랩 코드 시작-->
+    <!--    부트 스트랩-->
+    <div class="container">   <!-- Content here -->
     <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingOne">
@@ -188,17 +88,18 @@
             </div>
         </div>
     </div>
-
+        </div>
+    <!--방명록-->
     <div class="post">
         <div class="mypost">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="name" placeholder="url">
-                <label>닉네임</label>
+                <label>이름</label>
             </div>
             <div class="form-floating">
 <textarea class="form-control" placeholder="Leave a comment here" id="comment"
           style="height: 100px"></textarea>
-                <label>응원댓글</label>
+                <label>남기고 싶은 발자취</label>
             </div>
             <button onclick="save_comment()" type="button" class="btn btn-dark">응원 남기기</button>
         </div>
@@ -216,7 +117,6 @@
             </div>
         </div>
     </div>
-
 </body>
 
 </html>
