@@ -1,0 +1,201 @@
+.main {
+    width: 1280px;
+    height: 2300px;
+    position: center;
+    margin: auto;
+}
+
+/*최상단 팀원소개란 박스*/
+.benner {
+    background-image: url(../static/hd-wallpaper-g24d5b084b_1920.jpg);
+    background-size: cover;
+    text-align: center;
+    height: 380px;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.navigator {
+    display: flex;
+    /*nav-menu가 오른쪽으로*/
+    flex-direction: row;
+    /*nav-menu가 양옆으로*/
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+}
+
+.logo a {
+    text-decoration: none;
+}
+
+.link {
+    display: flex;
+    flex-direction: row;
+}
+
+.link .menu {
+    margin-right: 1rem;
+}
+
+.link .menu:last-child {
+    margin-right: 0;
+}
+
+.link a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: black;
+}
+
+.title-wrap {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-wrap .title {
+    font-size: 5rem;
+}
+
+/*상단 소개 카드 박스 조절*/
+.card-1 {
+    width: 800px;
+    height: 500px;
+    margin: auto;
+    margin-top: 100px;
+    display: flex;
+}
+
+/*하단 소개 카드 박스 조절*/
+.card-2 {
+    width: 1200px;
+    height: 500px;
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+}
+
+.guestbook {
+    width: 960px;
+    height: 300px;
+    text-align: center;
+    margin: auto;
+}
+
+/*이미지 호버시 텍스트 출력 CSS*/
+figure.snip0015 {
+    font-family: "Raleway", Arial, sans-serif;
+    color: #1f1f1f;
+    position: relative;
+    overflow: hidden;
+    margin: 0 40px 0 40px;
+    min-width: 300px;
+    max-width: 400px;
+    max-height: 800px;
+    width: 100%;
+    background: white;
+    text-align: center;
+}
+
+figure.snip0015 * {
+    box-sizing: border-box;
+}
+
+figure.snip0015 img {
+    opacity: 1;
+    width: 100%;
+    transition: opacity 0.35s;
+}
+
+figure.snip0015 figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 3em 3em;
+    width: 100%;
+    height: 100%;
+}
+
+figure.snip0015 figcaption::before {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    bottom: 50%;
+    left: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    content: "";
+    opacity: 0;
+    background-color: #ffffff;
+    transition: all 0.4s;
+    transition-delay: 0.6s;
+}
+
+figure.snip0015 h2,
+figure.snip0015 p {
+    margin: 0 0 5px;
+    opacity: 0;
+    transition: opacity 0.35s, -webkit-transform 0.35s, -moz-transform 0.35s,
+    -o-transform 0.35s, transform 0.35s;
+}
+
+figure.snip0015 h2 {
+    word-spacing: -0.15em;
+    font-weight: 300;
+    text-transform: uppercase;
+    transform: translate3d(0%, 50%, 0);
+    transition-delay: 0.3s;
+}
+
+figure.snip0015 h2 span {
+    font-weight: 800;
+}
+
+figure.snip0015 p {
+    font-weight: 200;
+    transition-delay: 0s;
+}
+
+figure.snip0015 a {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    color: #ffffff;
+}
+
+figure.snip0015:hover img {
+    opacity: 0.8;
+}
+
+figure.snip0015:hover figcaption h2 {
+    opacity: 1;
+    transform: translate3d(0%, 0%, 0);
+    transition-delay: 0.3s;
+}
+
+figure.snip0015:hover figcaption p {
+    opacity: 0.9;
+    transition-delay: 0.6s;
+}
+
+figure.snip0015:hover figcaption::before {
+    background: rgba(255, 255, 255, 0);
+    top: 30px;
+    bottom: 30px;
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+/*카드 아래 한마디*/
+.hello {
+    padding: 0 10px 0 10px;
+    color: black;
+    white-space: pre-line;
+}
