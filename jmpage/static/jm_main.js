@@ -65,7 +65,7 @@ function show_comment() {
 function delete_comment(num) {
     $.ajax({
         type: "DELETE",
-        url: "/jungmin/done",
+        url: "/jungmin",
         data: {
             num_give: num
         },
@@ -92,7 +92,7 @@ function update_comment(num) {
 
     $.ajax({
         type: "PUT",
-        url: "/jungmin/update",
+        url: "/jungmin",
         data: {
             num_give: num,
             name_give: name,

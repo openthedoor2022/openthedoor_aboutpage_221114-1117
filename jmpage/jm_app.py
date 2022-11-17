@@ -38,7 +38,7 @@ def jungmin_get():
     return jsonify({'jmguestbook': comment_list})
 
 # 댓글 삭제 기능
-@app.route("/jungmin/done", methods=["DELETE"])
+@app.route("/jungmin", methods=["DELETE"])
 def delete_comment():
     num_receive = request.form['num_give']
     db.jungmin.update_one({'num':int(num_receive)},{'$set':{'done':1}})
@@ -46,7 +46,7 @@ def delete_comment():
 
 
 # 댓글 수정 기능
-@app.route("/jungmin/update", methods=["PUT"])
+@app.route("/jungmin", methods=["PUT"])
 def member_update():
     num_receive = request.form['num_give']
     name_receive = request.form['name_give']

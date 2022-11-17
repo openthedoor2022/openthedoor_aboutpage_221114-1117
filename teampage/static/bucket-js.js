@@ -2,7 +2,7 @@ $(document).ready(function () {
     show_bucket();
 });
 
-// 버킷 추가 기능
+// 버킷 조회 기능
 function show_bucket() {
     $.ajax({
         type: "GET",
@@ -38,19 +38,23 @@ function show_bucket() {
     });
 }
 
-// 버킷 조회 기능
+// 버킷 추가 기능
 function save_bucket() {
     let bucket = $(`#bucket`).val();
 
-    $.ajax({
-        type: "POST",
-        url: "/bucket",
-        data: {bucket_give: bucket},
-        success: function (response) {
-            alert(response["msg"]);
-            window.location.reload();
-        },
-    });
+    if (bucket === "") {
+        alert("내용을 작성해주세요.")
+    } else {
+        $.ajax({
+            type: "POST",
+            url: "/bucket",
+            data: {bucket_give: bucket},
+            success: function (response) {
+                alert(response["msg"]);
+                window.location.reload();
+            },
+        });
+    }
 }
 
 // 버킷 완료 기능
@@ -83,7 +87,7 @@ function undone_bucket(num) {
 function delete_bucket(num) {
     $.ajax({
         type: "DELETE",
-        url: "/bucket/delete",
+        url: "/bucket",
         data: {
             num_give: num
         },
@@ -108,7 +112,7 @@ function update_bucket(num) {
 
     $.ajax({
         type: "PUT",
-        url: "/bucket/update",
+        url: "/bucket",
         data: {
             num_give: num,
             bucket_give: bucket
