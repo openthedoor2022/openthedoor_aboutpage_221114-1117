@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="99cab148-eef3-4b67-a4e3-a94156ee0f15" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jm_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/jm_app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/jm_main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/jm_main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../teampage/bucket.py" beforeDir="false" afterPath="$PROJECT_DIR$/../teampage/bucket.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../teampage/static/bucket-js.js" beforeDir="false" afterPath="$PROJECT_DIR$/../teampage/static/bucket-js.js" afterDir="false" />
-    </list>
+    <list default="true" id="99cab148-eef3-4b67-a4e3-a94156ee0f15" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,7 +99,7 @@
       <workItem from="1668661319080" duration="1633000" />
       <workItem from="1668663393121" duration="2823000" />
       <workItem from="1668669117006" duration="761000" />
-      <workItem from="1668670780181" duration="1755000" />
+      <workItem from="1668670780181" duration="2156000" />
     </task>
     <servers />
   </component>

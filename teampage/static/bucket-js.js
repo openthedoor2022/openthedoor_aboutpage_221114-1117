@@ -74,7 +74,7 @@ function done_bucket(num) {
 function undone_bucket(num) {
     $.ajax({
         type: "POST",
-        url: "/bucket/undone",
+        url: "/bucket",
         data: {num_give: num},
         success: function (response) {
             alert(response["msg"]);

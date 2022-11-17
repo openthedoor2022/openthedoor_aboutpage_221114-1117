@@ -46,7 +46,7 @@ def bucket_done():
 
 
 # 버킷 체크해제 기능
-@app.route("/bucket/undone", methods=["POST"])
+@app.route("/bucket", methods=["POST"])
 def bucket_undone():
     num_receive = request.form['num_give']
     db.bucket.update_one({'num': int(num_receive)}, {'$set': {'done': 0}})
