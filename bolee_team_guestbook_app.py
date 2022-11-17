@@ -31,7 +31,7 @@ def bolee_post():
         'cntcomment': cntcomment_receive
     }
     db.teamguestbook.insert_one(doc)
-    return jsonify({'msg': '방명록이 등록되었습니다.'})
+    return jsonify({'msg': '똑똑똑! 당신의 소중한 이야기가 도착했습니다.'})
 
 
 if __name__ == '__main__':
