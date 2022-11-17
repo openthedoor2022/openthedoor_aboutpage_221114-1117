@@ -11,7 +11,7 @@ db = client.bolee
 
 @app.route('/')
 def home():
-    return render_template('bolee_team_guestbook.html')
+    return render_template('teamintro.html')
 
 
 @app.route("/teamguestbook", methods=["GET"])
@@ -37,4 +37,4 @@ def bolee_post():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5001, debug=True)
+    app.run('0.0.0.0', port=5000, debug=True)
