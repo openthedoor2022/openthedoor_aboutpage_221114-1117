@@ -33,20 +33,6 @@ def bolee_post():
     db.teamguestbook.insert_one(doc)
     return jsonify({'msg': '방명록이 등록되었습니다.'})
 
-@app.route("/teamguestbook/update", methods=["POST"])
-def bolee_update():
-    num_receive = request.form['num_give']
-    usrname_receive = request.form['usrname_give']
-    cntcomment_receive = request.form['cntcomment_give']
-    db.teamguestbook.update_one({'num': int(num_receive)}, {'$set': {'name': usrname_receive}})
-    db.teamguestbook.update_one({'num': int(num_receive)}, {'$set': {'cntcomment': cntcomment_receive}})
-    return jsonify({'msg': '방명록이 수정되었습니다.'})
-
-@app.route("/teamguestbook/delete", methods=["POST"])
-def bolee_delete():
-    num_receive = request.form['num_give']
-    db.teamguestbook.delete_one({'num':int(num_receive)})
-    return jsonify({'msg': '방명록이 삭제되었습니다.'})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5001, debug=True)
