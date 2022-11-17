@@ -8,9 +8,6 @@ function show_sy() {
         url: "/sy_bucket",
         data: {},
         success: function (response) {
-
-
-
                 let rows = response['sy_buckets']
             for(let i=0; i<rows.length; i++){
 
@@ -35,10 +32,7 @@ function show_sy() {
                                </li>`
 
                 }
-
                 $('#bucket-list').append(temp_html)
-
-
             }
         }
     })

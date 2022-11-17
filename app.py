@@ -333,8 +333,8 @@ def sy_guestbook_get():
 
 @app.route("/sy_bucket", methods=["POST"])
 def sy_bucket_post():
-    sy_bucket_list = list(db.sy_buckets.find({}, {'_id': False}))
-    count = len(sy_bucket_list) + 1
+    sy_buckets_list = list(db.sy_buckets.find({}, {'_id': False}))
+    count = len(sy_buckets_list) + 1
 
     bucket_receive = request.form['bucket_give']
 
@@ -368,9 +368,9 @@ def sy_bucket_delete():
 
 @app.route("/sy_bucket", methods=["GET"])
 def sy_bucket_get():
-    sy_bucket_list = list(db.sy_buckets.find({}, {'_id': False}))
+    sy_buckets_list = list(db.sy_buckets.find({}, {'_id': False}))
 
-    return jsonify({'sy_buckets': sy_bucket_list})
+    return jsonify({'sy_buckets': sy_buckets_list})
 
 
 if __name__ == '__main__':
