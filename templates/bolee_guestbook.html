@@ -1,0 +1,230 @@
+<!-- 2022.11.15. 구현 시작일 (코드 작성자 : 이보형) / 버전 2022.11.17. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BOLEE 방명록</title>
+
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <!-- bootstrap 5.0.2 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- JQuery -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <style>
+        /* 해당 폰트가 모든 태그에 적용되도록 * 이용 */
+        * {
+            font-family: 'Nanum Pen Script', cufrsive;
+        }
+
+        body {
+            background-color: #e0d8cc;
+        }
+
+        .title {
+            text-align: center;
+            padding: 10px 20px;
+            margin: 80px auto 30px auto;
+        }
+
+        .write-box {
+            width: 500px;
+            padding: 10px 10px;
+            margin: 30px auto 20px auto;
+            box-shadow: 0px 0px 1px 0px gray;
+        }
+
+        .written-comment {
+            width: 500px;
+            padding: 10px 10px;
+            margin: 10px auto 10px auto;
+            background-color: transparent;
+            box-shadow: 0px 0px 1px 0px gray;
+        }
+
+        .usrname {
+            margin: 5px 0px 0px -13px;
+            width: 100px;
+            background-color: transparent;
+        }
+
+        .content-in-cb {
+            width: 105.5%;
+            height: 100px;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin: 0px 0px 0px -13px;
+            background-color: transparent;
+        }
+
+        .btn-submit {
+            border-radius: 5px;
+            border-width: 1.5px;
+            border-color: gray;
+            margin-top: 7px;
+            margin-right: -10px;
+            padding-right: 10px;
+            padding-left: 10px;
+            float: right;
+            background-color: transparent;
+        }
+
+        .btn-delete {
+            border-radius: 5px;
+            border-width: 1.5px;
+            border-color: gray;
+            float: right;
+            background-color: transparent;
+        }
+
+        .myimg {
+            margin-right: 5px;
+        }
+
+        input[type=text] {
+            width: 41%;
+            height: 35px;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 10px;
+        }
+
+        input[type=password] {
+            width: 50%;
+            height: 35px;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 10px;
+        }
+
+        input[type=submit] {
+            background-color: gainsboro;
+            float: right;
+            border-radius: 4px;
+            margin-top: -8px;
+            margin-right: -12px;
+        }
+    </style>
+
+</head>
+<!-- bootstrap5.0.5 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossOrigin="anonymous"></script>
+
+<script>
+    <!-- 시작 : 방명록 조회, 저장, 삭제 -->
+    <!-- 설명 : $(document).ready()는 문서가 준비되면 매개변수로 넣은 콜백 함수를 실행하라는 의미 -->
+    $(document).ready(function () {
+        comment_list();
+    });
+
+    function comment_list() {
+        $.ajax({
+            type: 'GET',
+            url: '/guestbook',
+            data: {},
+            success: function (response) {
+                let rows = response['comments']
+                for (let i = 0; i < rows.length; i++) {
+                    let num = rows[i]['num']
+                    let usrname = rows[i]['usrname']
+                    let cntcomment = rows[i]['cntcomment']
+
+                    let temp_html = `<div class="written-comment" id="written-comment">
+                                            <div>
+                                                <img class="myimg"
+                                                     src="https://cdn-icons.flaticon.com/svg/3917/3917705.svg?token=exp=1668051775~hmac=afcf6d257a594a7e53505c4ff48accee"
+                                                     alt="profile-img" style="width:20px; height:20px;">
+                                                <span>${usrname}</span>
+                                            <span>
+                                            <button type="button" class="btn-delete" value="삭제" onclick="delete_comment(${num})">삭 제</button>
+                                            </span>
+                                                </br>
+                                                </br>
+                                                <p>${cntcomment}</p>
+                                            </div>
+                                        </div>`
+                    $(`#written-comment`).append(temp_html)
+                }
+            }
+        });
+    }
+
+    function save_comment() {
+        let usrname = $('#usrname').val()
+        let cntcomment = $('#cntcomment').val()
+
+        $.ajax({
+            type: 'POST',
+            url: '/guestbook',
+            data: {usrname_give: usrname, cntcomment_give: cntcomment},
+            success: function (response) {
+                alert(response['msg'])
+                window.location.reload()
+            }
+        });
+    }
+
+    function delete_comment(num) {
+        $.ajax({
+            type: "POST",
+            url: "/guestbook/delete",
+            data: {num_give: num},
+            success: function (response) {
+                if (confirm("방명록을 삭제하시겠습니까?") === true) {
+                    alert(response['msg'])
+                    window.location.reload()
+                    document.delete_comment.submit();
+                } else {
+                    return false;
+                }
+            }
+        });
+    }
+
+    <!-- 끝 : 방명록 조회, 저장, 삭제 -->
+</script>
+<body>
+<h3 class="title">BOLEE 방명록</h3>
+
+<!-- 시작 : 방명록 글쓰기 박스 -->
+<form method="post">
+    <div class="write-box">
+        <div class="container">
+            <form action="/action_page.php">
+
+                <input type="text" class="usrname" id="usrname" name="usrname"
+                       required placeholder="닉네임">
+                <button type="button" class="btn-submit" value="등록하기" onclick="save_comment()">등록하기</button>
+                <p><textarea class="content-in-cb" type='text' id='cntcomment' placeholder='내용을 입력하세요.'
+                             autocomplete="off"></textarea></p>
+                <span>
+            </form>
+        </div>
+        </span>
+    </div>
+    </div>
+</form>
+<!-- 끝 : 방명록 글쓰기 박스 -->
+
+<!-- 시작 : 작성된 방명록 -->
+<div id="written-comment"></div>
+<!-- 끝 : 작성된 방명록 -->
+
+</body>
+</html>
