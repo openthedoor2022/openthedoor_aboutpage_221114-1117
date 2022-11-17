@@ -1,10 +1,10 @@
 /*guest book*/
 $(document).ready(function () {
-    show_jungmin()
+    show_comment()
 });
 
 /*댓글 추가 기능*/
-function save_jungmin() {
+function save_comment() {
     let name = $('#name').val()
     let comment = $('#comment').val()
 
@@ -27,10 +27,10 @@ function save_jungmin() {
 }
 
 /*댓글 조회 기능*/
-function show_jungmin() {
+function show_comment() {
     $.ajax({
         type: "GET",
-        url: "/jungmin",
+        url: "/jungmin/show",
         data: {},
         success: function (response) {
             let rows = response['jmguestbook']
@@ -47,8 +47,8 @@ function show_jungmin() {
                                                 <blockquote class="blockquote mb-0">
                                                     <p>${comment}</p>
                                                     <footer class="blockquote-footer">${name}</footer>
-                                                    <button type="button" onclick="delete_jungmin(${num})" class="jm_btn btn-secondary btn-sm">삭제</button>
-                                                    <button type="button" onclick="update_jungmin(${num})" class="jm_btn btn-secondary btn-sm">수정</button>
+                                                    <button type="button" onclick="delete_comment(${num})" class="jm_btn btn-secondary btn-sm">삭제</button>
+                                                    <button type="button" onclick="update_comment(${num})" class="jm_btn btn-secondary btn-sm">수정</button>
                                                 </blockquote>
                                             </div>
                                         </div>`
@@ -62,10 +62,10 @@ function show_jungmin() {
 }
 
 /*댓글 삭제 기능*/
-function delete_jungmin(num) {
+function delete_comment(num) {
     $.ajax({
         type: "DELETE",
-        url: "/jungmin",
+        url: "/jungmin/delete",
         data: {
             num_give: num
         },
@@ -74,7 +74,7 @@ function delete_jungmin(num) {
                  alert(response["msg"])
                  window.location.reload()
 
-     document.delete_jungmin.submit();
+     document.delete_comment.submit();
 
  }else{   //취소
 
@@ -86,13 +86,13 @@ function delete_jungmin(num) {
 }
 
 /*댓글 수정 기능*/
-function update_jungmin(num) {
+function update_comment(num) {
     let comment = $('#comment').val()
     let name = $('#name').val()
 
     $.ajax({
         type: "PUT",
-        url: "/jungmin",
+        url: "/jungmin/update",
         data: {
             num_give: num,
             name_give: name,
