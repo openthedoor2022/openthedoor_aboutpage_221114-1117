@@ -82,7 +82,7 @@ function undone_bucket(num) {
 // 버킷 삭제 기능
 function delete_bucket(num) {
     $.ajax({
-        type: "POST",
+        type: "DELETE",
         url: "/bucket/delete",
         data: {
             num_give: num
@@ -107,7 +107,7 @@ function update_bucket(num) {
     let bucket = $('#bucket').val()
 
     $.ajax({
-        type: "POST",
+        type: "PUT",
         url: "/bucket/update",
         data: {
             num_give: num,

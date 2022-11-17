@@ -62,7 +62,7 @@ def bucket_get():
 
 
 # 버킷 삭제 기능
-@app.route("/bucket/delete", methods=["POST"])
+@app.route("/bucket/delete", methods=["DELETE"])
 def bucket_delete():
     num_receive = request.form['num_give']
     db.bucket.update_one({'num': int(num_receive)}, {'$set': {'delete': 1}})
@@ -70,7 +70,7 @@ def bucket_delete():
 
 
 # 버킷 수정 기능
-@app.route("/bucket/update", methods=["POST"])
+@app.route("/bucket/update", methods=["PUT"])
 def bucket_update():
     num_receive = request.form['num_give']
     bucket_receive = request.form['bucket_give']

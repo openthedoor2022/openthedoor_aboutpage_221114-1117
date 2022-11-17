@@ -64,7 +64,7 @@ function show_comment() {
 /*댓글 삭제 기능*/
 function delete_comment(num) {
     $.ajax({
-        type: "POST",
+        type: "DELETE",
         url: "/jungmin/done",
         data: {
             num_give: num
@@ -91,7 +91,7 @@ function update_comment(num) {
     let name = $('#name').val()
 
     $.ajax({
-        type: "POST",
+        type: "PUT",
         url: "/jungmin/update",
         data: {
             num_give: num,
