@@ -1,0 +1,167 @@
+* {
+  font-family: 'Gowun Batang', serif;
+  color: black;
+}
+
+
+/* 방명록 CSS 시작 */
+
+#nav-list{
+
+  display: none;
+
+}
+
+
+#show{
+  display: block;
+}
+
+.mypic{
+  /* width: 100%;
+  height: 300px; */
+
+  max-width: 100%;
+  min-height: 50vh;
+  
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1668345585574-27fab9049590?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80");
+  background-position: center 30%;
+  background-size: cover;
+  
+  color: white;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  }
+  
+
+  .mypost {
+    width: 95%;
+    max-width: 500px;
+    margin: 20px 20px ;
+
+    box-shadow: 0px 0px 3px 0px black;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.mypost > button {
+    margin-top: 15px;
+}
+
+
+/* 방명록CSS 끝 */
+
+
+/* 탭 CSS 시작 */
+
+
+ul.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #ccc;
+}
+ul.list::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.tab-button {
+  display: block;
+  padding: 10px 20px 10px 20px;
+  float: left;
+  margin-right: -1px;
+  margin-bottom: -1px;
+  color: grey;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+.orange {
+  border-top: 2px solid orange;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid white;
+  border-left: 1px solid #ccc;
+  color: black;
+  margin-top: -2px;
+}
+.tab-content {
+  display: none;
+  padding: 10px;
+}
+.show {
+  display: block;
+}
+
+
+/* 탭 CSS */
+
+
+
+/* 여기서부터 ABOUT ME CSS */
+
+
+.white-box {
+	background: white;
+	padding: 20px;
+	border-radius: 5px;
+  box-shadow: 0px 0px 3px 0px black;
+  border-radius: 5px;
+}
+
+
+/* 여기서부터 bucket */
+
+.mybox {
+  width: 95%;
+  max-width: 700px;
+  padding: 20px;
+  box-shadow: 0px 0px 3px 0px black;
+  border-radius: 5px;
+  margin: 20px auto;
+
+  border-radius: 5px;
+}
+
+.mybucket {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mybucket > input {
+  width: 70%;
+}
+
+.mybox > li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 10px;
+  min-height: 48px;
+}
+
+.mybox > li > h2 {
+  max-width: 75%;
+  font-size: 20px;
+  font-weight: 500;
+  margin-right: auto;
+  margin-bottom: 0px;
+}
+
+.mybox > li > h2.done {
+  text-decoration: line-through;
+
+}
+
+/*#undone {*/
+/*  text-decoration: forestgreen;*/
+/*}*/

@@ -1,0 +1,59 @@
+
+* {
+    font-family: 'Hi Melody', cursive;
+}
+
+.header {
+    margin: 10px;
+}
+
+body {
+    background-color: white;
+}
+
+.main {
+
+    margin: 100px;
+
+    background-image: url("https://ca.slack-edge.com/T043597JK8V-U046WBSS33K-fb36b387bc13-512");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-color: white;
+
+    padding-top: 28.125%;
+}
+
+.profile {
+    padding: 7%;
+}
+
+.main-header {
+    padding-bottom: 7%;
+}
+
+.main-section {
+    padding-bottom: 7%;
+    text-align: center;
+}
+
+.name {
+    font-size: 30px;
+    text-align: center;
+}
+
+.post {
+    width: 95%;
+    max-width: 700px;
+    margin: 80px auto 20px auto;
+
+    box-shadow: 0px 0px 3px 0px black;
+    padding: 20px;
+}
+
+.mypost > button {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <title> Main Page </title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
+          rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        .mypic {
+            width: 1900px;
+            height: 300px;
+
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202005/09/dee51fd7-5288-4c94-844d-88ff9d447378.jpg');
+            background-position: center 40%;
+            background-size: cover;
+            background-color: black;
+            opacity: 0.8;
+
+            color: white;
+
+            font-size: 100px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .mypic > p {
+            width: 50%;
+            height: 150px;
+
+            background-color: rgba(255, 255, 255, 0.1);
+
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box1 {
+            width: 500px;
+            height: 500px;
+            background-color: gray;
+            background-position: center 30%;
+            background-color: rgba(255, 255, 255, 0.2);
+
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 100px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow: 0px 0px 30px 0px black;
+        }
+        .box1 > p1 {
+            width: 200px;
+            height: 40px;
+            background-color: gray;
+            background-color: rgba(255, 255, 255, 0.2);
+
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow: 0px 0px 50px 0px gold;
+
+
+
+        }
+
+        .box2 {
+            width: 500px;
+            height: 500px;
+            background-color: darksalmon;
+            background-position: center 30%;
+            background-color: rgba(255, 255, 255, 0.7);
+
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 100px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow: 0px 0px 30px 0px black;
+        }
+
+        .box3 {
+            width: 500px;
+            height: 500px;
+            background-color: aquamarine;
+            background-position: center 30%;
+            background-color: rgba(255, 255, 255, 0.2);
+
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 100px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow: 0px 0px 30px 0px black;
+        }
+
+    </style>
+    <script>
+        $(document).ready(function () {
+            set_temp()
+            show_dongkyu()
+        });
+
+        function set_temp() {
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
+                data: {},
+                success: function (response) {
+                    $('#temp').text(response['temp'])
+                }
+            })
+        }
+
+        function save_dongkyu() {
+            $.ajax({
+                type: 'POST',
+                url: '/dongkyu',
+                data: {sample_give: '데이터전송'},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            })
+        }
+
+        function show_dongkyu() {
+            $.ajax({
+                type: "GET",
+                url: "/dongkyu",
+                data: {},
+                success: function (response) {
+                    alert(response["msg"])
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="mypic">
+    <p>D.G의 세상</p>
+</div>
+
+
+<div class="card" style="width: 1900px; height: 40rem; background-color: silver;">
+    <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
+            <div class="box1">
+                <img src="..." class="card-img-top" alt="...">
+                <p class="card-text" style="font-size: 50px; color: black">⭐   소 개 합 니 다.   ⭐</p>
+                <p></p>
+                <p class="card-text" style="font-size: 21px;">대구에서 태어나 대전광역시를 거쳐</p>
+                                <p class="card-text" style="font-size: 21px;">보령시에 거주하고 있는 전 직업군인</p>
+                <p1 class="card-text" style="font-size: 27px; color: black; solid-color: black; ">장 . 동 . 규</p1>
+                <p></p>
+                <a href="dongkyu_page.html" class="btn btn-primary" style="font-size: 40px;">Detail</a>
+            </div>
+            <div class="box2">
+                <p class="card-text" style="font-size: 60px; color: black; solid-color: black; ">버 킷 리 스 트</p>
+                <p></p>
+                <p></p>
+                <p></p>
+
+                <a href="dongkyu_bucket.html" class="btn btn-primary" style="font-size: 40px;">Detail</a>
+            </div>
+            <div class="box3">
+                <img src="..." class="card-img-top" alt="...">
+                <p class="card-text" style="font-size: 60px; color: black; solid-color: black; ">방 명 록</p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <a href="dongkyu_guestbook.html" class="btn btn-primary" style="font-size: 40px;">Detail</a>
+            </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

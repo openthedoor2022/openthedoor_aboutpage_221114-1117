@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <title> 개인소개 Page </title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
+          rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        .mypic {
+            width: 1900px;
+            height: 300px;
+
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202005/09/dee51fd7-5288-4c94-844d-88ff9d447378.jpg');
+            background-position: center 40%;
+            background-size: cover;
+            background-color: black;
+            opacity: 0.8;
+
+            color: white;
+
+            font-size: 100px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .mypic > p {
+            width: 50%;
+            height: 150px;
+
+            background-color: rgba(255, 255, 255, 0.1);
+
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box1 {
+            width: 800px;
+            height: 500px;
+            background-color: gray;
+            background-position: center 30%;
+            background-color: rgba(255, 255, 255, 0.2);
+
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 100px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow: 0px 0px 30px 0px black;
+        }
+        .box1 > p1 {
+            width: 200px;
+            height: 40px;
+            background-color: gray;
+            background-color: rgba(255, 255, 255, 0.2);
+
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow: 0px 0px 50px 0px gold;
+
+
+
+        }
+
+        .box2 {
+            width: 800px;
+            height: 500px;
+            background-color: darksalmon;
+            background-position: center 30%;
+            background-color: rgba(255, 255, 255, 0.7);
+
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 70px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow: 0px 0px 30px 0px black;
+        }
+.btn1 {
+  padding:0;
+  background-color:white;
+}
+
+button{
+  width:44px;
+  height:84px;
+  border-color:transparent transparent transparent black;
+  border-style:solid solid solid solid;
+  border-width:43px 0 43px 84px;
+}
+
+
+    </style>
+    <script>
+        $(document).ready(function () {
+            set_temp()
+            show_dongkyu()
+        });
+
+        function set_temp() {
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
+                data: {},
+                success: function (response) {
+                    $('#temp').text(response['temp'])
+                }
+            })
+        }
+
+        function save_dongkyu() {
+            $.ajax({
+                type: 'POST',
+                url: '/homework',
+                data: {sample_give: '데이터전송'},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            })
+        }
+
+        function show_dongkyu() {
+            $.ajax({
+                type: "GET",
+                url: "/homework",
+                data: {},
+                success: function (response) {
+                    alert(response["msg"])
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="mypic">
+    <p>D.G의 소개와 다짐</p>
+</div>
+
+
+<div class="card" style="width: 1900px; height: 40rem; background-color: silver;">
+    <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
+            <div class="box1">
+                <video controls loop muted autoplay width=560 heigt=315><source src="https://blog.naver.com/ehdrb2811/222929893601"/></video>
+            </div>
+            <div class="box2">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            성장 환경
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                         data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>반갑습니다. 노드.js 4기 교육생 장동규입니다.</strong> 저의 성장환경을 들려드리겠습니다.
+                            저는 대구에서 3형제중 첫째로 태어나 21살부터 직업군인이 되어 대전으로 홀로 떠나게 됩니다.
+                            대전에서 5년간 보안업무담당관으로 근무하고, 또 지금 있는 보령으로와서 7년의 군생활을 마무리 하고 새로운 인생을 준비중입니다.
+                            <code>새로운 인생을 준비중입니다.</code> 지금 현재 누구보다 능력적으로 뒤쳐진다는걸 알고 있습니다. 열심히 하겠습니다.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne1">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            목표 및 하고싶은 것
+                        </button>
+                    </h2>
+                    <div id="collapseOne1" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                         data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>저의 4개월 간 목표는 못해도 꾸준히 따라가자라는 마음먹기입니다.</strong> 구체적이지 않을수도 있습니다.
+                            다만, 말할 수 있습니다. 성실하고 포기하지않으면 못하는 일은 없다구요. 처음엔 어느 누군가에게 역량적으로 뒤쳐져 놀림을
+                            받을수도 있습니다. 하지만 이 길의 끝에는 성실하고 포기하지 않은 자가 정상에 먼저 갈것입니다. 4개월 뒤 저는 저만의 앱을
+                            만들어보고 싶습니다.
+                            <code>다들 화이팅 입니다.</code>,
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

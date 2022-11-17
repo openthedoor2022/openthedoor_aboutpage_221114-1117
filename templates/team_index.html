@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!--부트 스트랩-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<title>팀원 소개 페이지</title>
+<!--폰트-->
+<link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
+<link href="../static/team_style.css" rel="stylesheet">
+<!-- JQuery 추가 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<script>
+    <!-- 시작 : 포스트잇방명록효과 -->
+    $(document).ready(function () {
+        all_notes = $("li a");
+
+        all_notes.on("keyup", function () {
+            note_title = $(this).find("h2").text();
+            note_content = $(this).find("p").text();
+
+            item_key = "list_" + $(this).parent().index();
+
+            data = {
+                title: note_title,
+                content: note_content
+            };
+
+            window.localStorage.setItem(item_key, JSON.stringify(data));
+        });
+
+        all_notes.each(function (index) {
+            data = JSON.parse(window.localStorage.getItem("list_" + index));
+
+            if (data !== null) {
+                note_title = data.title;
+                note_content = data.content;
+
+                $(this).find("h2").text(note_title);
+                $(this).find("p").text(note_content);
+            }
+        });
+    });
+    <!-- 끝 : 포스트잇 방명록 효과 -->
+
+    <!-- 시작 : 방명록 등록 -->
+    $(document).ready(function () {
+        comment_list();
+    });
+
+
+    function comment_list() {
+        $.ajax({
+            type: 'GET',
+            url: '/teamguestbook',
+            data: {},
+            success: function (response) {
+                let rows = response['comments']
+                for (let i = 0; i < rows.length; i++) {
+                    let usrname = rows[i]['usrname']
+                    let cntcomment = rows[i]['cntcomment']
+
+                    let temp_html = `<div class="allgb">
+                                        <div class="teamgb">
+                                        <ul id="written-comment" class="first">
+                                        <li class="second">
+                                            <a id="empty-note" class="third">
+                                                <div class="usrname2022">${usrname}</div>
+                                                <div class="comment2022">${cntcomment}</div>
+                                            </a>
+                                        </li>
+                                      </ul>
+                                        </div></div>`
+                    $(`#written-comment`).append(temp_html)
+                }
+            }
+        });
+    }
+
+    function save_comment() {
+        let usrname = $('#usrname').val()
+        let cntcomment = $('#cntcomment').val()
+
+        $.ajax({
+            type: 'POST',
+            url: '/teamguestbook',
+            data: {usrname_give: usrname, cntcomment_give: cntcomment},
+            success: function (response) {
+                alert(response['msg'])
+                window.location.reload()
+            }
+        });
+    }
+    <!-- 시작 : 방명록 등록 -->
+</script>
+<body>
+<div class="main">
+    {% extends "navbar.html" %}
+    {% block content %}
+    <!--    <div class="benner">-->
+    <!--        <nav class="navigator">-->
+    <!--            <div class="logo">-->
+    <!--                <a class="site-name" href="/introduce">-->
+    <!--                    <img src="https://cdn-icons-png.flaticon.com/512/2237/2237440.png" width="30">-->
+    <!--                    오픈더도어</a>-->
+    <!--                </h4>-->
+    <!--            </div>-->
+    <!--            <div class="link">-->
+    <!--                <div class="menu">-->
+    <!--                    <a href="/introduce">팀소개</a>-->
+    <!--                </div>-->
+    <!--                <div class="menu">-->
+    <!--                    <a href="/info">팀원소개</a>-->
+    <!--                </div>-->
+    <!--                <div class="menu">-->
+    <!--                    <a href="/table">프로젝트</a>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </nav>-->
+    <!--        <div class="title-wrap">-->
+    <!--            <div class="title">-->
+    <!--                팀원소개-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+
+    <div>
+        <!--		팀원 소개 카드 상단-->
+        <div class="card-1">
+            <figure class="snip0015">
+                <img src="../static/AREmoji_20221117_114903_hyung.jpg" alt="sample38"/>
+                <figcaption>
+                    <h2>9조<p><span>이보형</span></p>자기소개</h2>
+                    <p>상세 페이지 구경가기</p>
+                    <a href=/bolee></a>
+                </figcaption>
+                <div class="hello">
+                    <b>코드를 아름답게 꾸려야 하는 것, 그것이 개발자로서의 지향점이라고 생각합니다.</b>
+                    <div class="developer"><br>백앤드 개발자</br>
+                    </div>
+                </div>
+            </figure>
+            <figure class="snip0015">
+                <img src="../static/ContactPhotoRetouching-IMG_20221117_105749_min.jpg" alt="sample39"/>
+                <figcaption>
+                    <h2>9조<p><span>김정민</span>
+                        <p>자기소개</h2>
+                    <p>구경하려면 클릭!👆</p>
+                    <a href=/jungmin></a>
+                </figcaption>
+                <div class="hello">
+                    <b>비전공자도 쉽게 이해할 수 있게 설명할 수 있는 개발자가 되고 싶습니다.</b>
+                    <div class="developer"><br>백앤드 개발자</br>
+                    </div>
+                </div>
+            </figure>
+        </div>
+        <!--		팀원 소개 카드 하단-->
+        <div class="card-2">
+            <figure class="snip0015">
+                <img src="../static/AREmoji_20221117_114723_yun.jpg" alt="sample40"/>
+                <figcaption>
+                    <h2>9조<p></p><span>장승윤</span>
+                        <p></p>자기소개<span>green</span></h2>
+                    <p>By the end of the day, you ought to seriously re-examine your life.</p>
+                    <a href=/sy></a>
+                </figcaption>
+                <div class="hello">
+                    <b>각자 남기고 싶은 한마디</b>
+                    <div class="developer"><br>백앤드 개발자</br>
+                    </div>
+                </div>
+            </figure>
+            <figure class="snip0015">
+                <img src="../static/AREmoji_20221117_110042_ryeol.jpg" alt="sample39"/>
+                <figcaption>
+                    <h2>9조<p></p><span>전규렬</span></p>자기소개</h2>
+                    <p>Would the Mongols hoard, if the Mongol hordes got bored?.</p>
+                    <a href=/gyuryeol></a>
+                </figcaption>
+                <div class="hello">
+                    <b>노력은 배신하지 않는다, <br>모자른 만큼 노력하겠습니다.</br></b>
+                    <div class="developer"><br>백앤드 개발자</br>
+                    </div>
+                </div>
+            </figure>
+            <figure class="snip0015">
+                <img src="../static/AREmoji_20221117_110904_dong.jpg" alt="sample39"/>
+                <figcaption>
+                    <h2>9조<p><span>장동규</span></p>자기소개</h2>
+                    <p>Would the Mongols hoard, if the Mongol hordes got bored?.</p>
+                    <a href=/dongkyu></a>
+                </figcaption>
+                <div class="hello">
+                    <b>각자 남기고 싶은 한마디</b>
+                    <div class="developer"><br>백앤드 개발자</br>
+                    </div>
+                </div>
+            </figure>
+        </div>
+    </div>
+    <div class="guestbook">
+        <ul>
+        <li>
+            <a id="empty-note" href="#"> <!-- 설명 : contenteditable 글자를 입력할 수 있는 형태가 됨 -->
+                <input type="text" class="usrname" id="usrname"
+                       required placeholder="이름"
+                       contenteditable maxlength="14"/>
+                <textarea class="comment" id='cntcomment'
+                          required placeholder="당신의 소중한 목소리를 들려주세요 - 팀 오픈더도어"
+                          contenteditable maxlength="43"></textarea>
+                <button type="button" class="btn-submit" onclick="save_comment()">+</button>
+            </a>
+        </li>
+    </ul>
+    <!-- 끝 : 방명록 작성할 수 있는 부분  -->
+
+    <!-- 시작 : 작성된 방명록 -->
+    <ul id="written-comment"></ul>
+    <!-- 끝 : 작성된 방명록 -->
+    </div>
+</div>
+    {% endblock %}
+</body>
+</html>
