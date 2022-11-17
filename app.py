@@ -146,7 +146,6 @@ def bucket_undone():
 @app.route("/bucket", methods=["GET"])
 def bucket_get():
     bucket_list = list(db.bucket.find({}, {'_id': False}))
-
     return jsonify({'buckets': bucket_list})
 
 
@@ -230,20 +229,20 @@ def jungmin_post():
     return jsonify({'msg': '댓글 달기 완료!'})
 
 # 댓글 조회 기능
-@app.route("/jungmin", methods=["GET"])
+@app.route("/jungmin/show", methods=["GET"])
 def jungmin_get():
     comment_list = list(db.jungmin.find({}, {'_id': False}))
     return jsonify({'jmguestbook': comment_list})
 
 # 댓글 삭제 기능
-@app.route("/jungmin", methods=["DELETE"])
+@app.route("/jungmin/delete", methods=["DELETE"])
 def delete_jungmin():
     num_receive = request.form['num_give']
     db.jungmin.update_one({'num':int(num_receive)},{'$set':{'done':1}})
     return jsonify({'msg': '댓글 삭제 완료'})
 
 # 댓글 수정 기능
-@app.route("/jungmin", methods=["PUT"])
+@app.route("/jungmin/update", methods=["PUT"])
 def jungmin_update():
     num_receive = request.form['num_give']
     name_receive = request.form['name_give']
