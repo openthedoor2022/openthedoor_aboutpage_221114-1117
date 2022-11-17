@@ -38,6 +38,20 @@ def gyuryeol():
 def dongkyu():
     return render_template('dongkyu_index.html')
 
+@app.route('/dongkyu_page')
+def dongkyupage():
+    return render_template('dongkyu_page.html')
+
+@app.route('/dongkyu_guestbook')
+def dongkyuguestbook():
+    return render_template('dongkyu_guestbook.html')
+
+@app.route('/dongkyu_bucket')
+def dongkyubucket():
+    return render_template('dongkyu_bucket.html')
+
+
+
 # 김정민
 @app.route('/jungmin')
 def jungmin():
@@ -183,7 +197,7 @@ def gyuryeol_post():
     return jsonify({'msg': '방명록 작성완료'})
 
 
-@app.route("/gyuryeol", methods=["GET"])
+@app.route("/gyuryeol/list", methods=["GET"])
 def gyuryeol_get():
     comment_list = list(db.gyuryeol.find({}, {'_id': False}))
     return jsonify({'comments': comment_list})
@@ -203,7 +217,7 @@ def dongkyu_post():
 
     return jsonify({'msg': '좋아'})
 
-@app.route("/dongkyu", methods=["GET"])
+@app.route("/dongkyu/list", methods=["GET"])
 def dongkyu_get():
     comment_list = list(db.dongkyu.find({}, {'_id': False}))
     return jsonify({'comments':comment_list})
@@ -253,7 +267,7 @@ def jungmin_update():
 
 
 # 이보형
-@app.route("/bolee", methods=["GET"])
+@app.route("/bolee/list", methods=["GET"])
 def bolee_get():
     comment_list = list(db.bolee.find({}, {'_id': False}))
     return jsonify({'comments': comment_list})

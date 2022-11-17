@@ -64,11 +64,11 @@
     </style>
     <script>
         $(document).ready(function () {
-            show_dongkyu()
+            show_comment()
         });
 
 
-        function save_dongkyu() {
+        function save_comment() {
             let name = $('#name').val()
             let comment = $('#comment').val()
 
@@ -83,17 +83,16 @@
             })
         }
 
-        function show_dongkyu() {
+        function show_comment() {
             $.ajax({
                 type: "GET",
-                url: "/dongkyu",
+                url: "/dongkyu/list",
                 data: {},
                 success: function (response) {
                     let rows = response['comments']
                     for (let i = 0; i < rows.length; i++) {
                         let name = rows[i]['name']
                         let comment = rows[i]['comment']
-
                         let temp_html = `<div class="card">
                                             <div class="card-body">
                                                 <blockquote class="blockquote mb-0">
@@ -102,7 +101,6 @@
                                                 </blockquote>
                                             </div>
                                          </div>`
-
                         $('#comment-list').append(temp_html)
                     }
                 }
@@ -124,7 +122,7 @@
           style="height: 100px"></textarea>
         <label for="floatingTextarea2">하고싶은 말</label>
     </div>
-    <button onclick="save_dongkyu()" type="button" class="btn btn-dark">박명록 남기기</button>
+    <button onclick="save_comment()" type="button" class="btn btn-dark">방명록 남기기</button>
 </div>
 <div class="mycards" id="comment-list">
 </div>

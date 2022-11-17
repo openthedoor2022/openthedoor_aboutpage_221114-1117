@@ -142,7 +142,7 @@ button{
         function save_dongkyu() {
             $.ajax({
                 type: 'POST',
-                url: '/homework',
+                url: '/dongkyu',
                 data: {sample_give: '데이터전송'},
                 success: function (response) {
                     alert(response['msg'])
@@ -154,7 +154,7 @@ button{
         function show_dongkyu() {
             $.ajax({
                 type: "GET",
-                url: "/homework",
+                url: "/dongkyu",
                 data: {},
                 success: function (response) {
                     alert(response["msg"])
@@ -172,7 +172,7 @@ button{
 <div class="card" style="width: 1900px; height: 40rem; background-color: silver;">
     <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
             <div class="box1">
-                <video controls loop muted autoplay width=560 heigt=315><source src="https://blog.naver.com/ehdrb2811/222929893601"/></video>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/ifL5htmwACI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="box2">
                 <div class="accordion-item">

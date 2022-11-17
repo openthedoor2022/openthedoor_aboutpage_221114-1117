@@ -136,7 +136,7 @@
     function comment_bolee() {
         $.ajax({
             type: 'GET',
-            url: '/bolee',
+            url: '/bolee/list',
             data: {},
             success: function (response) {
                 let rows = response['comments']
@@ -147,9 +147,7 @@
 
                     let temp_html = `<div class="written-comment" id="written-comment">
                                             <div>
-                                                <img class="myimg"
-                                                     src="https://cdn-icons.flaticon.com/svg/3917/3917705.svg?token=exp=1668051775~hmac=afcf6d257a594a7e53505c4ff48accee"
-                                                     alt="profile-img" style="width:20px; height:20px;">
+                                                <img class="myimg" src="https://cdn-icons-png.flaticon.com/512/3059/3059518.png" alt="profile-img" style="width:20px; height:20px;">
                                                 <span>${usrname}</span>
                                             <span>
                                             <button type="button" class="btn-delete" value="삭제" onclick="delete_bolee(${num})">삭 제</button>

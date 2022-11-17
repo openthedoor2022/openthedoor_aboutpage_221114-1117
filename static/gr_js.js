@@ -21,7 +21,7 @@ function show_gyuryeol() {
     $('#comment-list').empty()
     $.ajax({
         type: "GET",
-        url: "/gyuryeol",
+        url: "/gyuryeol/list",
         data: {},
         success: function (response) {
             let rows = response['comments']
