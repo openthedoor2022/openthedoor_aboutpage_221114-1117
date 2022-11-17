@@ -1,4 +1,4 @@
-.main {
+body {
     width: 1280px;
     height: 2300px;
     position: center;
@@ -7,7 +7,20 @@
 
 /*최상단 팀원소개란 박스*/
 .benner {
-    background-image: url(../static/hd-wallpaper-g24d5b084b_1920.jpg);
+    background-image: url("https://images.unsplash.com/photo-1601084213767-04a4dba01dbb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80");
+    background-position: center 55%;
+    background-size: cover;
+    text-align: center;
+    height: 650px;
+    width: 1280px;
+    margin-top: auto;
+    display: flex;
+
+}
+.benner {
+    /*background-image: url(../static/hd-wallpaper-g24d5b084b_1920.jpg);*/
+
+
     background-size: cover;
     text-align: center;
     height: 380px;
@@ -15,6 +28,31 @@
     margin-top: auto;
     display: flex;
     flex-direction: column;
+}
+
+.link {
+    width: 100%;
+    float: right;
+    display: block;
+    position: absolute;
+    left: 68%;
+    margin: 10px auto;
+}
+
+.link-2 {
+    color: white;
+    margin-left: 20px;
+}
+
+.link-3 {
+    float: right;
+    margin-left: 20px;
+}
+
+.home {
+    font-size: 70px;
+    position: center;
+    margin: auto;
 }
 
 .navigator {
@@ -97,9 +135,8 @@
 
 /*방명록*/
 .guestbook {
-    width: 960px;
+    width: 1150px;
     height: 300px;
-    text-align: center;
     margin: auto;
 }
 
@@ -210,28 +247,29 @@ figure.snip0015:hover figcaption::before {
 }
 /*호버 CSS 종료*/
 
-/* 방명록 */
-    .teamgb {
+/*방명록 style*/
+    /* 시작 : 포스트잇 방명록 */
+    body {
         margin: 20px auto;
         color: #fff;
     }
 
-    .allgb {
+    * {
         margin: 0;
         padding: 0;
     }
 
-    .usrname2022 {
+    .usrname {
         font-weight: bold;
         font-size: 1.6rem;
         font-family: 'Kirang Haerang', cursive;
         width: 110%;
         margin-left: -8px;
-        background-color: #ffc;  /* type="text"를 포스트잇 배경색에 맞추기 */
+        background-color: #ffc; /* type="text"를 포스트잇 배경색에 맞추기 */
         border: none;
     }
 
-    .comment2022 {
+    .comment {
         width: 107%;
         height: 64%;
         margin-top: 10px;
@@ -239,7 +277,7 @@ figure.snip0015:hover figcaption::before {
         font-size: 1.5rem;
         font-weight: normal;
         font-family: 'Nanum Brush Script', cursive;
-        background-color: #ffc;  /* type="text"를 포스트잇 배경색에 맞추기 */
+        background-color: #ffc; /* type="text"를 포스트잇 배경색에 맞추기 */
         border: none;
         text-align: center;
         white-space: normal;
@@ -247,7 +285,7 @@ figure.snip0015:hover figcaption::before {
         padding: 15px;
     }
 
-    .btn-submit2022 {
+    .btn-submit {
         margin-top: 10px;
         margin-left: 107px;
         background-color: black;
@@ -256,20 +294,21 @@ figure.snip0015:hover figcaption::before {
         width: 30px;
         border-radius: 50%;
         font-weight: bolder;
-        position: relative; z-index: 2;
+        position: relative;
+        z-index: 2;
     }
 
-    .first, .second {
+    ul, li {
         list-style: none;
     }
 
-    .first {
+    ul {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .first .second .third {
+    ul li a {
         text-decoration: none;
         color: #000;
         background: #ffc; /* 포스트잇 배경색 */
@@ -281,29 +320,29 @@ figure.snip0015:hover figcaption::before {
         transition: transform .15s linear;
     }
 
-    .first .second {
+    ul li {
         margin: 1.5em;
     }
 
-    .first .second:nth-child(even) .third {
+    ul li:nth-child(even) a {
         transform: rotate(4deg);
         position: relative;
         top: 5px;
     }
 
-    .first .second:nth-child(3n) .third {
+    ul li:nth-child(3n) a {
         position: relative;
         top: -5px;
         background: #ccf;
     }
 
-    .first .second:nth-child(5n) .third {
+    ul li:nth-child(5n) a {
         transform: rotate(5deg);
         position: relative;
         top: -10px;
     }
 
-    .first .second .third:hover, .first .second .third:focus {
+    ul li a:hover, ul li a:focus {
         box-shadow: 10px 10px 7px rgba(0, 0, 0, .7);
         transform: rotate(-6deg);
         position: relative;

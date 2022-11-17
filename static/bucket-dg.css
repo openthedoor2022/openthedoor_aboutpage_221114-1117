@@ -1,3 +1,83 @@
+
+body {
+    width: 80vw;
+    height: 100vh;
+    margin: auto;
+}
+
+.benner {
+    /*background-image: url(../static/hd-wallpaper-g24d5b084b_1920.jpg);*/
+
+
+    background-size: cover;
+    text-align: center;
+    height: 380px;
+    width: 100%;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.benner {
+    background-image: url("https://images.unsplash.com/photo-1601084213767-04a4dba01dbb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80");
+    background-position: center 55%;
+    background-size: cover;
+    text-align: center;
+    height: 40vh;
+    width: 80vw;
+    margin-top: auto;
+    display: flex;
+
+}
+
+.link {
+    width: 100%;
+    float: right;
+    display: block;
+    position: absolute;
+    left: 68%;
+    margin: 10px auto;
+}
+
+.link-2 {
+    color: white;
+    margin-left: 20px;
+}
+
+.link-3 {
+    float: right;
+    margin-left: 20px;
+}
+
+.link {
+    display: flex;
+    flex-direction: row;
+}
+
+.link .menu {
+    margin-right: 1rem;
+}
+
+.link .menu:last-child {
+    margin-right: 0;
+}
+
+.link a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: black;
+}
+
+.home {
+    font-size: 70px;
+    position: center;
+    margin: auto;
+}
+
+
+
+
 .bucketTitle {
     display: flex;
     flex-direction: row;

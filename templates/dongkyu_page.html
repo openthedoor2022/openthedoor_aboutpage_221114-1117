@@ -122,46 +122,7 @@ button{
 
 
     </style>
-    <script>
-        $(document).ready(function () {
-            set_temp()
-            show_dongkyu()
-        });
 
-        function set_temp() {
-            $.ajax({
-                type: "GET",
-                url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
-                data: {},
-                success: function (response) {
-                    $('#temp').text(response['temp'])
-                }
-            })
-        }
-
-        function save_dongkyu() {
-            $.ajax({
-                type: 'POST',
-                url: '/dongkyu',
-                data: {sample_give: '데이터전송'},
-                success: function (response) {
-                    alert(response['msg'])
-                    window.location.reload()
-                }
-            })
-        }
-
-        function show_dongkyu() {
-            $.ajax({
-                type: "GET",
-                url: "/dongkyu",
-                data: {},
-                success: function (response) {
-                    alert(response["msg"])
-                }
-            });
-        }
-    </script>
 </head>
 <body>
 <div class="mypic">
@@ -213,7 +174,7 @@ button{
     </div>
 
 </div>
-
+</div>
 
 </body>
 </html>

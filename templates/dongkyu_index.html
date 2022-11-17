@@ -128,46 +128,6 @@
         }
 
     </style>
-    <script>
-        $(document).ready(function () {
-            set_temp()
-            show_dongkyu()
-        });
-
-        function set_temp() {
-            $.ajax({
-                type: "GET",
-                url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
-                data: {},
-                success: function (response) {
-                    $('#temp').text(response['temp'])
-                }
-            })
-        }
-
-        function save_dongkyu() {
-            $.ajax({
-                type: 'POST',
-                url: '/dongkyu',
-                data: {sample_give: '데이터전송'},
-                success: function (response) {
-                    alert(response['msg'])
-                    window.location.reload()
-                }
-            })
-        }
-
-        function show_dongkyu() {
-            $.ajax({
-                type: "GET",
-                url: "/dongkyu",
-                data: {},
-                success: function (response) {
-                    alert(response["msg"])
-                }
-            });
-        }
-    </script>
 </head>
 <body>
 <div class="mypic">
@@ -178,7 +138,6 @@
 <div class="card" style="width: 1900px; height: 40rem; background-color: silver;">
     <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
             <div class="box1">
-                <img src="..." class="card-img-top" alt="...">
                 <p class="card-text" style="font-size: 50px; color: black">⭐   소 개 합 니 다.   ⭐</p>
                 <p></p>
                 <p class="card-text" style="font-size: 21px;">대구에서 태어나 대전광역시를 거쳐</p>
@@ -196,7 +155,6 @@
                 <a href=/dongkyu_bucket class="btn btn-primary" style="font-size: 40px;">Detail</a>
             </div>
             <div class="box3">
-                <img src="..." class="card-img-top" alt="...">
                 <p class="card-text" style="font-size: 60px; color: black; solid-color: black; ">방 명 록</p>
                 <p></p>
                 <p></p>

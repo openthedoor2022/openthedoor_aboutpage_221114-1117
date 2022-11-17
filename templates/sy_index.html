@@ -39,8 +39,6 @@
 </head>
 
 <body>
-    {% extends "navbar.html" %}
-    {% block content %}
 
 <!-- navbar -->
 
@@ -121,7 +119,7 @@
 
                         <img src="{{url_for('static', filename='sy_myimage.png')}}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <p class="card-text"> 안녕하십니까? 내이름은 </p>
+                            <p class="card-text"> 안녕하십니까?</p>
                             <p>내 이야기 한번 들어볼래요?</p>
                         </div>
                     </div>
@@ -131,8 +129,7 @@
             <div class="col-md-6 col-lg-4" style="margin-top: 10px">
                 <div class="white-box">
 
-                    <p> 나는 누구인가? </p>
-                    <p> 누구인가? 누가 </p>
+                    <a href="https://velog.io/@favorssy"> 블로그 </a>
 
 
 
@@ -250,6 +247,5 @@
 <script type="text/javascript" src="{{url_for('static', filename='sy_todo.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='sy_guestbook.js')}}"></script>
 
-    {% endblock %}
 </body>
 </html>

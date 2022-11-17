@@ -58,15 +58,11 @@
         .mypic > p {
             width: 50%;
             height: 150px;
-
             background-color: rgba(255, 255, 255, 0.1);
-
-
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-
             border-radius: 20px;
         }
         .card {
@@ -74,22 +70,17 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-
-            width: 1911px;
+            width: 80vw;
             height: auto;
             background-color: white;
         }
         .box3 {
-            font-size: 70px;
+            font-size: 65px;
             margin-top: 100px;
-            margin-right: 100px;
         }
         .box4 {
             font-size: 40px;
-            width: 800px;
             margin-top: 100px;
-
-
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -112,65 +103,35 @@
         }
 
         .topic {
-            width: 1911px;
+            width: 80vw;
             height: auto;
         }
 
     </style>
-    <script>
-        $(document).ready(function () {
-            set_temp()
-            show_comment()
-        });
-
-        function set_temp() {
-            $.ajax({
-                type: "GET",
-                url: "http://spartacodingclub.shop/sparta_api/weather/seoul",
-                data: {},
-                success: function (response) {
-                    $('#temp').text(response['temp'])
-                }
-            })
-        }
-
-        function save_comment() {
-            $.ajax({
-                type: 'POST',
-                url: '/homework',
-                data: {sample_give: '데이터전송'},
-                success: function (response) {
-                    alert(response['msg'])
-                    window.location.reload()
-                }
-            })
-        }
-
-        function show_comment() {
-            $.ajax({
-                type: "GET",
-                url: "/homework",
-                data: {},
-                success: function (response) {
-                    alert(response["msg"])
-                }
-            });
-        }
-    </script>
-
-    <!--버킷 제외 끝-->
-
-
 </head>
 <body>
-{% extends "navbar.html" %}
-{% block content %}
+<div class="benner">
+    <div class="link">
+        <div class="link-1">
+            <a href=/>Team</a>
+        </div>
+        <div class="link-2">
+            <a href=/teammember>member</a>
+        </div>
+        <div class="link-3">
+            <a href=/teamproject>projects</a>
+        </div>
+    </div>
+    <div class="home">
+        Open The Door
+    </div>
+</div>
 
-<div class="mypic">
+<!--<div class="mypic">
         <div class="row row-cols-1 row-cols-md-1 g-1" id="mypic-box"></div>
 
     <p>프 로 젝 트</p>
-</div>
+</div>-->
 
 <div class="topic">
     <div class="row row-cols-1 row-cols-md-2 g-2" id="cards1-box">
@@ -202,10 +163,12 @@ margin-top: 150px; margin-bottom:150px; width: 1200px; height: auto;">
                     </h2>
                     <div id="flush-collapseOne1" class="accordion-collapse collapse"
                          aria-labelledby="flush-headingOne1" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body" style="font-size: 30px;">Placeholder content for this accordion,
-                            which is intended to
-                            demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion
-                            body.
+                        <div class="accordion-body" style="font-size: 30px;">- 프로젝트명/팀명 : 오픈 더 도어<br>
+- 프로젝트 유형 : 미니/단기 프로젝트<br>
+- 프로젝트 일정 : 2022.11.14.(월)~17.(목), 총 4일<br>
+- 프로젝트 내용 : 팀소개 웹페이지 구현<br>
+- 프로젝트 투입인력 : 총 5인<br>
+- 프로젝트 목표 : 참여형 팀 소개 웹페이지 제작
                         </div>
                     </div>
                 </div>
@@ -220,21 +183,22 @@ margin-top: 150px; margin-bottom:150px; width: 1200px; height: auto;">
                                 data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseOne2" aria-expanded="false"
                                 aria-controls="flush-collapseOne2">
-                        <p class="my-underline-offset-2">개발인원들의 역할</p>
+                        <p class="my-underline-offset-2">팀원들의 역할</p>
                         </button>
                     </h2>
                     <div id="flush-collapseOne2" class="accordion-collapse collapse"
                          aria-labelledby="flush-headingOne2" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body" style="font-size: 30px;">Placeholder content for this accordion,
-                            which is intended to
-                            demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion
-                            body.
+                        <div class="accordion-body" style="font-size: 30px;">- 이보형(팀장) : CRUD 방명록, 개인 소개 웹페이지 개발<br>
+- 김정민 : CRUD 버킷리스트, 개인 소개 웹페이지 개발<br>
+- 장승윤 : 팀 소개 페이지, 개인 소개 웹페이지 개발<br>
+- 전규렬 : 팀원 소개 페이지, 개인 소개 웹페이지 개발<br>
+- 장동규 : 프로젝트 소개 페이지, 개인 소개 웹페이지 개발
                         </div>
                     </div>
                 </div>
             </div>
             <!---ac3--->
-            <div class="accordion3" style="
+ <div class="accordion3" style="border:0 solid black; border-radius: 50px;
 margin-top: 150px; margin-bottom:150px; width: 1200px; height: auto;">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne3">
@@ -243,20 +207,17 @@ margin-top: 150px; margin-bottom:150px; width: 1200px; height: auto;">
                                 data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseOne3" aria-expanded="false"
                                 aria-controls="flush-collapseOne3">
-                            <p class="my-underline-offset-1">구현된 API와 사용된 기술들</p>
+                        <p class="my-underline-offset-2">사용 언어 및 기술</p>
                         </button>
                     </h2>
                     <div id="flush-collapseOne3" class="accordion-collapse collapse"
                          aria-labelledby="flush-headingOne3" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body" style="font-size: 30px;">Placeholder content for this accordion,
-                            which is intended to
-                            demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion
-                            body.
+                        <div class="accordion-body" style="font-size: 30px;">HTML / CSS / JS / Python<br>
+                            jQuery / Flask / MongoDB / Ajax / AWS
                         </div>
                     </div>
                 </div>
             </div>
-
 
             <!--시작-->
             <div class="bucketbox">
@@ -282,7 +243,7 @@ margin-top: 150px; margin-bottom:150px; width: 1200px; height: auto;">
 
 <script type="text/javascript" src="../static/bucket-dg.js"></script>
 </div>
-{% endblock %}
+
 </body>
 </html>
 
