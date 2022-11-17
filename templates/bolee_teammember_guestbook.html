@@ -1,4 +1,4 @@
-<!-- 팀 소개 페이지용 방명록(포스트잇) -->
+<!-- 팀원 소개 페이지용 방명록(포스트잇) -->
 
 <!-- 2022.11.16. 구현 시작일 (코드 작성자 : 이보형) / 버전 2022.11.17.-->
 <!-- 구현기능 1. 포스트잇 각종 효과 2. 포스트잇 안에 글 등록 버튼 삽입 3. 닉네임, 방명록 내용 글자수 제한 -->
@@ -42,7 +42,7 @@
         font-family: 'Kirang Haerang', cursive;
         width: 110%;
         margin-left: -8px;
-        background-color: #ffc;  /* type="text"를 포스트잇 배경색에 맞추기 */
+        background-color: lightgrey;  /* type="text"를 포스트잇 배경색에 맞추기 */
         border: none;
     }
 
@@ -54,7 +54,7 @@
         font-size: 1.5rem;
         font-weight: normal;
         font-family: 'Nanum Brush Script', cursive;
-        background-color: #ffc;  /* type="text"를 포스트잇 배경색에 맞추기 */
+        background-color: lightgrey;  /* type="text"를 포스트잇 배경색에 맞추기 */
         border: none;
         text-align: center;
         white-space: normal;
@@ -87,7 +87,7 @@
     ul li a {
         text-decoration: none;
         color: #000;
-        background: #ffc; /* 포스트잇 배경색 */
+        background: lightgrey; /* 포스트잇 배경색 */
         display: block;
         height: 18em;
         width: 18em;
@@ -169,7 +169,7 @@
     function comment_list() {
         $.ajax({
             type: 'GET',
-            url: '/teamguestbook',
+            url: '/teammemberguestbook',
             data: {},
             success: function (response) {
                 let rows = response['comments']
@@ -197,7 +197,7 @@
 
         $.ajax({
             type: 'POST',
-            url: '/teamguestbook',
+            url: '/teammemberguestbook',
             data: {usrname_give: usrname, cntcomment_give: cntcomment},
             success: function (response) {
                 alert(response['msg'])
@@ -218,7 +218,7 @@
                        required placeholder="이름"
                        contenteditable maxlength="14"/>
                 <textarea class="comment" id='cntcomment'
-                          required placeholder="당신의 소중한 목소리를 들려주세요 - 팀 오픈더도어"
+                          required placeholder="오픈더도어 팀 멤버에게 메시지를 남겨주세요"
                           contenteditable maxlength="43"></textarea>
                 <button type="button" class="btn-submit" onclick="save_comment()">+</button>
             </a>
