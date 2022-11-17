@@ -1,0 +1,254 @@
+<!-- 2022.11.16. 구현 시작일 (코드 작성자 : 이보형) / 버전 2022.11.16.-->
+
+<!-- 발생오류 해결완료 6건(파생오류 해결완료건 1건)
+FE
+1. [해결완료/2022.11.16.] 닉네임과 내용 입력 부분이 <a contenteditable>로 묶여 편집 가능한 형태로 서로의 영역을 침범함
+=> 닉네임과 내용 입력 부분을 div로 나누고 각각 contenteditable를 적용해 해결
+2. [해결완료/2022.11.16.] 글자수가 많은 경우 포스트잇 범위를 벗어나 페이지 배경으로까지 글자가 표시됨
+=> 글자수 제한(maxlength)을 두어 포스트잇 범위를 벗어나지 않도록 함
+3.  [해결완료/2022.11.16.] input으로 type="text"를 넣는 경우 테두리가 생김
+=> <input> 박스 클릭 시 outline 속성의 기본값이 적용되어 원하지 않는 테두리가 생기는 일이 종종 발생
+=> 해당 CSS에 background-color: #ffc;와 border: none;를 적용해 해결
+4-1. [해결완료/2022.11.16.] 내용 입력 부분을 type="text"로 하니 문단을 나눠 작성되는 게 아니라 한줄로 작성됨
+=> type="text"의 기본 원칙은 한줄 쓰기로 문단을 나눠 쓰고 싶은 경우에는 type="textarea"로 해야 함
+4-2. [해결완료/2022.11.16.] type="textarea"로 지정된 내용 입력 부분의 입력창 크기를 조정할 수 있어 기존 포스트잇 범위를 벗어나게 커짐
+=> CSS에 resize: none; 적용해 textarea지만 입력창 크기를 조정할 수 없도록 변경
+5. [해결완료/2022.11.16.] 버튼 둥글게 만들기 위해 CSS에 border-radius: 50%를 적용했으나 타원형이 됨
+=> CSS에서 버튼에 height 값만 넣기기 때문임. weight 값을 height 값과 동일하게 적어 넣었고 해결
+-->
+
+<!-- 구현기능
+1. 포스트잇 각종 효과
+2. 포스트잇 안에 글 등록 버튼 삽입
+3. 닉네임, 방명록 내용 글자수 제한
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Kirang+Haerang&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
+    <!-- bootstrap 5.2 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <!-- JQuery 추가 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+<style>
+    /* 시작 : 포스트잇 방명록 */
+    body {
+        margin: 20px auto;
+        color: #fff;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .usrname {
+        font-weight: bold;
+        font-size: 1.6rem;
+        font-family: 'Kirang Haerang', cursive;
+        width: 110%;
+        margin-left: -8px;
+        background-color: #ffc;  /* type="text"를 포스트잇 배경색에 맞추기 */
+        border: none;
+    }
+
+    .comment {
+        width: 107%;
+        height: 64%;
+        margin-top: 10px;
+        margin-left: -8px;
+        font-size: 1.5rem;
+        font-weight: normal;
+        font-family: 'Nanum Brush Script', cursive;
+        background-color: #ffc;  /* type="text"를 포스트잇 배경색에 맞추기 */
+        border: none;
+        text-align: center;
+        white-space: normal;
+        resize: none;
+        padding: 15px;
+    }
+
+    .btn-submit {
+        margin-top: 10px;
+        margin-left: 107px;
+        background-color: black;
+        color: white;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        font-weight: bolder;
+        position: relative; z-index: 2;
+    }
+
+    ul, li {
+        list-style: none;
+    }
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    ul li a {
+        text-decoration: none;
+        color: #000;
+        background: #ffc; /* 포스트잇 배경색 */
+        display: block;
+        height: 18em;
+        width: 18em;
+        padding: 1.5em;
+        box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
+        transition: transform .15s linear;
+    }
+
+    ul li {
+        margin: 1.5em;
+    }
+
+    ul li:nth-child(even) a {
+        transform: rotate(4deg);
+        position: relative;
+        top: 5px;
+    }
+
+    ul li:nth-child(3n) a {
+        position: relative;
+        top: -5px;
+        background: #ccf;
+    }
+
+    ul li:nth-child(5n) a {
+        transform: rotate(5deg);
+        position: relative;
+        top: -10px;
+    }
+
+    ul li a:hover, ul li a:focus {
+        box-shadow: 10px 10px 7px rgba(0, 0, 0, .7);
+        transform: rotate(-6deg);
+        position: relative;
+        z-index: 5;
+    }
+
+    /* 끝 : 포스트잇 방명록 */
+</style>
+
+<script>
+    <!-- 시작 : 포스트잇 방명록 효과 -->
+    $(document).ready(function () {
+        all_notes = $("li a");
+
+        all_notes.on("keyup", function () {
+            note_title = $(this).find("h2").text();
+            note_content = $(this).find("p").text();
+
+            item_key = "list_" + $(this).parent().index();
+
+            data = {
+                title: note_title,
+                content: note_content
+            };
+
+            window.localStorage.setItem(item_key, JSON.stringify(data));
+        });
+
+        all_notes.each(function (index) {
+            data = JSON.parse(window.localStorage.getItem("list_" + index));
+
+            if (data !== null) {
+                note_title = data.title;
+                note_content = data.content;
+
+                $(this).find("h2").text(note_title);
+                $(this).find("p").text(note_content);
+            }
+        });
+    });
+    <!-- 끝 : 포스트잇 방명록 효과 -->
+
+    <!-- 시작 : 방명록 등록 -->
+    $(document).ready(function () {
+        comment_list();
+    });
+
+    function comment_list() {
+        $.ajax({
+            type: 'GET',
+            url: '/teamguestbook',
+            data: {},
+            success: function (response) {
+                let rows = response['comments']
+                for (let i = 0; i < rows.length; i++) {
+                    let usrname = rows[i]['usrname']
+                    let cntcomment = rows[i]['cntcomment']
+
+                    let temp_html = `<ul id="written-comment">
+                                        <li>
+                                            <a id="empty-note" href="#">
+                                                <div class="usrname">${usrname}</div>
+                                                <div class="comment">${cntcomment}</div>
+                                            </a>
+                                        </li>
+                                      </ul>`
+                    $(`#written-comment`).append(temp_html)
+                }
+            }
+        });
+    }
+
+    function save_comment() {
+        let usrname = $('#usrname').val()
+        let cntcomment = $('#cntcomment').val()
+
+        $.ajax({
+            type: 'POST',
+            url: '/teamguestbook',
+            data: {usrname_give: usrname, cntcomment_give: cntcomment},
+            success: function (response) {
+                alert(response['msg'])
+                window.location.reload()
+            }
+        });
+    }
+    <!-- 시작 : 방명록 등록 -->
+</script>
+
+<body>
+
+    <!-- 시작 : 방명록 작성할 수 있는 부분  -->
+    <ul>
+        <li>
+            <a id="empty-note" href="#"> <!-- 설명 : contenteditable 글자를 입력할 수 있는 형태가 됨 -->
+                <input type="text" class="usrname" id="usrname"
+                       required placeholder="이름"
+                       contenteditable maxlength="14"/>
+                <textarea class="comment" id='cntcomment'
+                          required placeholder="당신의 소중한 목소리를 들려주세요 - 팀 오픈더도어"
+                          contenteditable maxlength="43"></textarea>
+                <button type="button" class="btn-submit" onclick="save_comment()">+</button>
+            </a>
+        </li>
+    </ul>
+    <!-- 끝 : 방명록 작성할 수 있는 부분  -->
+
+    <!-- 시작 : 작성된 방명록 -->
+    <ul id="written-comment"></ul>
+    <!-- 끝 : 작성된 방명록 -->
+
+</body>
+</html>
